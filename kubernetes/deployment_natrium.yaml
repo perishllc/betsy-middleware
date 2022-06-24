@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: betsy-natrium
+  name: betsy-nautilus
   namespace: betsy
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: betsy-natrium
+      app: betsy-nautilus
   template:
     metadata:
       labels:
-        app: betsy-natrium
+        app: betsy-nautilus
     spec:
       containers:
-      - name: betsy-natrium
+      - name: betsy-nautilus
         image: bananocoin/betsy:1.0.6
         command: ["/bin/bash", "-c"]
-        args: ["python main.py --host 0.0.0.0 --port 5555 --bpow-nano-difficulty --callbacks http://natrium-server.natrium:5076/callback"]
+        args: ["python main.py --host 0.0.0.0 --port 5555 --bpow-nano-difficulty --callbacks http://nautilus-server.nautilus:5076/callback"]
         ports:
         - containerPort: 5555
           name: api
@@ -50,7 +50,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: betsy-natrium
+  name: betsy-nautilus
   namespace: betsy
 spec:
   type: ClusterIP
@@ -59,4 +59,4 @@ spec:
     targetPort: 5555
     name: api
   selector:
-    app: betsy-natrium
+    app: betsy-nautilus
