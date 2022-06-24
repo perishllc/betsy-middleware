@@ -17,15 +17,15 @@ spec:
       - name: betsy-nautilus
         image: bananocoin/betsy:1.0.6
         command: ["/bin/bash", "-c"]
-        args: ["python main.py --host 0.0.0.0 --port 5555 --bpow-nano-difficulty --callbacks http://nautilus-server.nautilus:5076/callback"]
+        args: ["python main.py --host 0.0.0.0 --port 5555 --precache --bpow-nano-difficulty --callbacks http://nautilus.perish.co:5076/callback"]
         ports:
         - containerPort: 5555
           name: api
         env:
           - name: REDIS_HOST
-            value: redis-0.redis
+            value: db-redis-nyc3-79075-do-user-1024997-0.b.db.ondigitalocean.com
           - name: REDIS_DB
-            value: "2"  
+            value: "2"
           - name: BPOW_USER
             valueFrom:
               secretKeyRef:
